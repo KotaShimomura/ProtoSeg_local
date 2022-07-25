@@ -19,7 +19,7 @@ Prevalent semantic segmentation solutions, despite their different network desig
 
 This implementation is built on [openseg.pytorch](https://github.com/openseg-group/openseg.pytorch). Many thanks to the authors for the efforts.
 
-Please follow the [Getting Started](https://github.com/openseg-group/openseg.pytorch/blob/master/GETTING_STARTED.md) for installation and dataset preparation.
+Please follow the [Getting Started](https://github.com/KotaShimomura/openseg.pytorch/blob/master/GETTING_STARTED.md) for installation and dataset preparation.
 
 ## Performance
 
