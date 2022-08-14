@@ -64,6 +64,8 @@ class CityscapesGenerator(object):
             ori_train_label_dir = os.path.join(self.args.ori_root_dir, 'gtFine/train')
             ori_val_img_dir = os.path.join(self.args.ori_root_dir, 'leftImg8bit/val')
             ori_val_label_dir = os.path.join(self.args.ori_root_dir, 'gtFine/val')
+            
+            print("dir config")
 
             for image_file in self.__list_dir(ori_train_img_dir):
                 image_name = '_'.join(image_file.split('_')[:-1])
@@ -73,6 +75,7 @@ class CityscapesGenerator(object):
                             os.path.join(self.train_image_dir, '{}{}'.format(shotname, extension)))
                 shutil.copy(os.path.join(ori_train_label_dir, label_file),
                             os.path.join(self.train_label_dir, '{}.png'.format(shotname)))
+            print("pass1")
 
             for image_file in self.__list_dir(ori_val_img_dir):
                 image_name = '_'.join(image_file.split('_')[:-1])
@@ -82,24 +85,43 @@ class CityscapesGenerator(object):
                             os.path.join(self.val_image_dir, '{}{}'.format(shotname, extension)))
                 shutil.copy(os.path.join(ori_val_label_dir, label_file),
                             os.path.join(self.val_label_dir, '{}.png'.format(shotname)))
-
+            print("pass2")
+            
         else:
-
+            print("else")
+            print(self.args.ori_root_dir)
             ori_train_img_dir = os.path.join(self.args.ori_root_dir, 'leftImg8bit/train')
             ori_train_label_dir = os.path.join(self.args.ori_root_dir, 'gtCoarse/train')
             ori_train_extra_img_dir = os.path.join(self.args.ori_root_dir, 'leftImg8bit/train_extra')
             ori_train_extra_label_dir = os.path.join(self.args.ori_root_dir, 'gtCoarse/train_extra')
             ori_val_img_dir = os.path.join(self.args.ori_root_dir, 'leftImg8bit/val')
             ori_val_label_dir = os.path.join(self.args.ori_root_dir, 'gtCoarse/val')
+            
+            print("dir config")
 
             for image_file in self.__list_dir(ori_train_img_dir):
                 image_name = '_'.join(image_file.split('_')[:-1])
                 label_file = '{}_gtCoarse_labelIds.png'.format(image_name)
+                print(image_name)
+                print(label_file)
+                
                 shotname, extension = os.path.splitext(image_file.split('/')[-1])
+                
+                print("end shot ext")
                 shutil.copy(os.path.join(ori_train_img_dir, image_file),
                             os.path.join(self.train_image_dir, '{}{}'.format(shotname, extension)))
+                print("pass copy 1")
+                
+                print(ori_train_label_dir)
+                print(label_file)
+                print(self.train_label_dir)
+                print(shotname)
                 shutil.copy(os.path.join(ori_train_label_dir, label_file),
                             os.path.join(self.train_label_dir, '{}.png'.format(shotname)))
+                #/tmp/working/workspace/ProtoSeg_local/data/original_cityscapes/gtCoarse/train + jena/jena_000084_000019_gtCoarse_labelIds.png
+                print("pass copy 2")
+                
+            print("pass for1")
 
             for image_file in self.__list_dir(ori_train_extra_img_dir):
                 image_name = '_'.join(image_file.split('_')[:-1])
@@ -109,6 +131,8 @@ class CityscapesGenerator(object):
                             os.path.join(self.coarse_image_dir, '{}{}'.format(shotname, extension)))
                 shutil.copy(os.path.join(ori_train_extra_label_dir, label_file),
                             os.path.join(self.coarse_label_dir, '{}.png'.format(shotname)))
+                
+            print("pass for2")
 
             for image_file in self.__list_dir(ori_val_img_dir):
                 image_name = '_'.join(image_file.split('_')[:-1])
@@ -118,6 +142,7 @@ class CityscapesGenerator(object):
                             os.path.join(self.val_image_dir, '{}{}'.format(shotname, extension)))
                 shutil.copy(os.path.join(ori_val_label_dir, label_file),
                             os.path.join(self.val_label_dir, '{}.png'.format(shotname)))
+            print("pass for3")
 
 
     def __list_dir(self, dir_name):
@@ -128,7 +153,9 @@ class CityscapesGenerator(object):
                     filename_list.append('{}/{}'.format(item, filename))
             else:
                 filename_list.append(item)
-
+                
+                
+        print("pass listdir")
         return filename_list
 
 
