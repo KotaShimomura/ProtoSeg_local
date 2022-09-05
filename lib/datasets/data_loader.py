@@ -171,7 +171,7 @@ class DataLoader(object):
         valloader = data.DataLoader(
             loader,
             sampler=sampler,
-            batch_size=self.configer.get('val', 'batch_size') // get_world_size(), pin_memory=True,
+            batch_size=self.configer.get('val', 'batch_size') // get_world_size(), pin_memory=False,
             num_workers=self.configer.get('data', 'workers'), shuffle=False,
             collate_fn=lambda *args: collate(
                 *args, trans_dict=self.configer.get('val', 'data_transformer')
@@ -187,7 +187,7 @@ class DataLoader(object):
                 SWOffsetTestLoader(root_dir=self.configer.get('data', 'data_dir'), dataset=dataset,
                                    img_transform=self.img_transform,
                                    configer=self.configer),
-                batch_size=self.configer.get('test', 'batch_size'), pin_memory=True,
+                batch_size=self.configer.get('test', 'batch_size'), pin_memory=False,
                 num_workers=self.configer.get('data', 'workers'), shuffle=False,
                 collate_fn=lambda *args: collate(
                     *args, trans_dict=self.configer.get('test', 'data_transformer')
