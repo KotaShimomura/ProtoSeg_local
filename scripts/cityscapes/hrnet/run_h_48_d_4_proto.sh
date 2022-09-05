@@ -3,9 +3,9 @@ SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 cd $SCRIPTPATH
 cd ../../../
 
-DATA_ROOT=$3
-SCRATCH_ROOT=$4
-ASSET_ROOT=${DATA_ROOT}
+DATA_ROOT="/workspace/workspace/ProtoSeg_local/data"
+SCRATCH_ROOT="/workspace/workspace/ProtoSeg_local/output"
+ASSET_ROOT="/workspace/workspace/ProtoSeg_local/checkpoints/cityscapes/"
 
 DATA_DIR="${DATA_ROOT}/Cityscapes"
 SAVE_DIR="${SCRATCH_ROOT}/Cityscapes/seg_results/"
@@ -17,7 +17,7 @@ CONFIGS_TEST="configs/cityscapes/H_48_D_4_TEST.json"
 MODEL_NAME="hrnet_w48_proto"
 LOSS_TYPE="pixel_prototype_ce_loss"
 CHECKPOINTS_ROOT="${SCRATCH_ROOT}/Cityscapes"
-CHECKPOINTS_NAME="${MODEL_NAME}_lr1x_"$2
+CHECKPOINTS_NAME="hrnet_w48_proto_lr1x_hrnet_proto_80k"
 LOG_FILE="${SCRATCH_ROOT}/logs/Cityscapes/${CHECKPOINTS_NAME}.log"
 echo "Logging to $LOG_FILE"
 mkdir -p `dirname $LOG_FILE`
