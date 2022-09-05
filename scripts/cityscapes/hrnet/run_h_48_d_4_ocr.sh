@@ -3,26 +3,26 @@ SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 cd $SCRIPTPATH
 cd ../../../
 
-DATA_ROOT=$3
-SCRATCH_ROOT=$4
-ASSET_ROOT=${DATA_ROOT}
+DATA_ROOT="/workspace/workspace/ProtoSeg_local/data"
+SCRATCH_ROOT="/workspace/workspace/ProtoSeg_local/output"
+ASSET_ROOT="/workspace/workspace/ProtoSeg_local/checkpoints/cityscapes/"
 
-DATA_DIR="${DATA_ROOT}/Cityscapes"
+DATA_DIR="/workspace/workspace/ProtoSeg_local/data/Cityscapes"
 SAVE_DIR="${SCRATCH_ROOT}/Cityscapes/seg_results/"
 BACKBONE="hrnet48"
 
 CONFIGS="configs/cityscapes/H_48_D_4.json"
 CONFIGS_TEST="configs/cityscapes/H_48_D_4_TEST.json"
 
-MODEL_NAME="hrnet_w48_ocr"
-LOSS_TYPE="fs_auxce_loss"
-CHECKPOINTS_ROOT="${SCRATCH_ROOT}/Cityscapes/"
-CHECKPOINTS_NAME="${MODEL_NAME}_paddle_lr2x_"$2
+MODEL_NAME="hrnet_w48"
+LOSS_TYPE="fs_ce_loss"
+CHECKPOINTS_ROOT="${SCRATCH_ROOT}/Cityscapes"
+CHECKPOINTS_NAME="${MODEL_NAME}_ocr_1"
 LOG_FILE="${SCRATCH_ROOT}/logs/Cityscapes/${CHECKPOINTS_NAME}.log"
 echo "Logging to $LOG_FILE"
 mkdir -p `dirname $LOG_FILE`
 
-PRETRAINED_MODEL="${ASSET_ROOT}/hrnetv2_w48_imagenet_pretrained.pth"
+PRETRAINED_MODEL="/workspace/workspace/ProtoSeg_local/pretrained_model/hrnetv2_w48_imagenet_pretrained.pth"
 MAX_ITERS=40000
 BATCH_SIZE=8
 BASE_LR=0.01
@@ -47,7 +47,7 @@ if [ "$1"x == "train"x ]; then
                        --distributed \
                        --base_lr ${BASE_LR} \
                        2>&1 | tee ${LOG_FILE}
-                       
+
 
 elif [ "$1"x == "resume"x ]; then
   python -u main.py --configs ${CONFIGS} \
