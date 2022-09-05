@@ -3,11 +3,11 @@ SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 cd $SCRIPTPATH
 cd ../../../
 
-DATA_ROOT=$3
-SCRATCH_ROOT=$4
-ASSET_ROOT=${DATA_ROOT}
+DATA_ROOT="/workspace/workspace/ProtoSeg_local/data"
+SCRATCH_ROOT="/workspace/workspace/ProtoSeg_local/output"
+ASSET_ROOT="/workspace/workspace/ProtoSeg_local/checkpoints/cityscapes/"
 
-DATA_DIR="${DATA_ROOT}/Cityscapes"
+DATA_DIR="/workspace/workspace/ProtoSeg_local/data/Cityscapes"
 SAVE_DIR="${SCRATCH_ROOT}/Cityscapes/seg_results/"
 BACKBONE="hrnet48"
 
